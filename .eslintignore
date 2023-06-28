@@ -1,0 +1,6 @@
+build
+node_modules
+coverage
+.github
+.nyc_output
+spec

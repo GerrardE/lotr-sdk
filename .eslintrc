@@ -1,0 +1,67 @@
+{
+  "root": true,
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint"
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true,
+    "mocha": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "rules": {
+    "one-var": 2,
+    "one-var-declaration-per-line": 2,
+    "new-cap": 2,
+    "consistent-return": 2,
+    "no-param-reassign": 2,
+    "comma-dangle": 2,
+    "linebreak-style": 2,
+    "curly": ["error", "multi-line"],
+    "no-console": 2,
+    "quotes": [
+      2,
+      "double"
+    ],
+    "prettier/prettier": [
+      "warn",
+      {
+        "doubleQuote": true,
+        "semi": true
+      }
+    ],
+    "no-shadow": [
+      "error",
+      {
+        "allow": ["req", "res", "err"]
+      }
+    ],
+    "valid-jsdoc": [
+      "error",
+      {
+        "requireReturn": true,
+        "requireReturnType": true,
+        "requireParamDescription": false,
+        "requireReturnDescription": true
+      }
+    ],
+    "require-jsdoc": [
+      "error",
+      {
+        "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": true,
+          "ClassDeclaration": true
+        }
+      }
+    ]
+  }
+}

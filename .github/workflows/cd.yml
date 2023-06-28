@@ -1,0 +1,57 @@
+name: lotr-cd
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+  # production, test or development
+  NODE_ENV: ${{ secrets.NODE_ENV }}
+  ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+  API_URL: ${{ secrets.API_URL }}
+
+jobs:
+  test:
+    name: test
+    
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.x'
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Run Tests
+        run: yarn test
+
+      - name: Run Test Coverage
+        run: yarn coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1 
+
+  build:
+    name: build
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.x'
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Build/Bundle Apis
+        run: yarn build
